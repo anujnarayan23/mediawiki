@@ -121,7 +121,7 @@ update the hostname to 35.247.72.25
 ## Copy the LocalSettings.php file inside the pod
 kubectl cp /root/mediawiki/Charts/mywiki/LocalSettings.php wm/mywikiapp-7c46bfff98-dxg7w:/var/www/html
 
-This time it will mount LocalSettings.php file under `/var/www/html/` using config map.
+This time it will mount LocalSettings.php file under `/var/www/html/`
 
 <table>
   <tr>
