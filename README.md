@@ -1,6 +1,6 @@
 ## MediaWiki
 
-This project containerizes the Media Wiki application along with Mariadb under Centos 7.
+This project containerizes the Media Wiki application along with Mariadb under RedHat Linux.
 
 ## Install
 
