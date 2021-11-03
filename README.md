@@ -117,8 +117,6 @@ update the hostname to 35.247.72.25
 
 ## Update Application helm chart.
 ### Download LocalSettings.php
-### Update Values.yaml
-Update config property in File: [Values.yaml](https://github.com/ksingh3/MediaWiki/blob/3dc5d3103759b4c2bd52975859ec31468606ec89/Charts/mywiki/values.yaml#L40-L138) using the downloaded LocalSettings.php.
 
 ## Copy the LocalSettings.php file inside the pod
 kubectl cp /root/mediawiki/Charts/mywiki/LocalSettings.php wm/mywikiapp-7c46bfff98-dxg7w:/var/www/html
