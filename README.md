@@ -45,7 +45,7 @@ $ docker build -t anuj23/mediawiki:deploy2 .
 $ cd /MediaWiki/Docker/Database
 $ docker build -t anuj23/mediawiki:db .
 ```
-## run the GKE cluster command to connect to the cluster
+## Run the GKE cluster command to connect to the cluster
 
 ### Create a namespace 
 ```shell
@@ -77,7 +77,7 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;
 Exit from the pod.
 
 ### Mariadb hostname
-As we are using type as a Load balancer host will be ip address of the app
+As we are using type as a Load balancer host will be ip address of the LoadBalancer
 
 
 ### Install the application
