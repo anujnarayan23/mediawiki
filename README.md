@@ -15,12 +15,12 @@ Following are the prerequisite before going forward:
 You can use my docker hub images, else you can create you own image beofre create run docker login.
 
 ### Use my docker images
-- Application image: [ksingh3/mediawiki:deploy](https://hub.docker.com/layers/ksingh3/mediawiki/tags/)
-- Mariadb Image: [ksingh3/mediawiki:db](https://hub.docker.com/layers/ksingh3/mediawiki/tags/)
+- Application image: [anuj23/mediawiki:deploy2](https://hub.docker.com/layers/anuj23/mediawiki/tags/)
+- Mariadb Image: [anuj23/mediawiki:db](https://hub.docker.com/layers/anuj23/mediawiki/tags/)
 
 ```shell
-$ docker pull ksingh3/mediawiki:deploy
-$ docker pull ksingh3/mediawiki:db
+$ docker pull anuj23/mediawiki:deploy2
+$ docker pull anuj23/mediawiki:db
 ```
 
 ### Docker login
@@ -31,20 +31,21 @@ $ docker login
 ```
 ### Clone this repo 
 ```shell
-$ git clone https://github.com/ksingh3/MediaWiki.git
+$ git clone https://github.com/anujnarayan23/mediawiki.git
 ```
 
 ### Build application image
 ```shell
 $ cd MediaWiki/Docker/Application
-$ docker build -t ksingh3/mediawiki:deploy .
+$ docker build -t anuj23/mediawiki:deploy2 .
 ```
 
 ### Build database image 
 ```shell
 $ cd /MediaWiki/Docker/Database
-$ docker build -t ksingh3/mediawiki:db .
+$ docker build -t anuj23/mediawiki:db .
 ```
+## run the GKE cluster command to connect to the cluster
 
 ### Create a namespace 
 ```shell
@@ -76,7 +77,7 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;
 Exit from the pod.
 
 ### Mariadb hostname
-mywiki-db.wm.svc.cluster.local
+As we are using type as a Load balancer host will be ip address of the app
 
 
 ### Install the application
@@ -85,14 +86,14 @@ $ cd MediaWiki/Charts/mywiki
 $ helm upgrade --install mywiki -f values.yaml . -n wm
 ```
 
-### Port forward to access from local
+### Port forward to access from GKE cluter pod
  ```shell
  $ export POD_NAME=$(kubectl get pods --namespace wm -l "app.kubernetes.io/name=mywiki,app.kubernetes.io/instance=mywiki" -o jsonpath="{.items[0].metadata.name}")
  $ kubectl --namespace wm port-forward $POD_NAME 8080:80
 ```
 
 ## Setup the Application 
-Open the application on [http://localhost:8080](http://localhost:8080)
+Open the application on [http://34.82.215.209:8080](http://34.82.215.209:8080)
 <table>
   <tr>
     <td><img src="Screenshots/1.JPG"></td>
@@ -103,7 +104,7 @@ Open the application on [http://localhost:8080](http://localhost:8080)
  </table>
 
 ### Database hostname
-update the hostname to mywiki-db.wm.svc.cluster.local
+update the hostname to 35.247.72.25
 
 <table>
   <tr>
@@ -119,10 +120,9 @@ update the hostname to mywiki-db.wm.svc.cluster.local
 ### Update Values.yaml
 Update config property in File: [Values.yaml](https://github.com/ksingh3/MediaWiki/blob/3dc5d3103759b4c2bd52975859ec31468606ec89/Charts/mywiki/values.yaml#L40-L138) using the downloaded LocalSettings.php.
 
-### Re-run the helm upgrade with upgrade=Yes
-```shell
-helm upgrade --install mywiki -f values.yaml . -n wm --set upgrade=Yes
-```
+## Copy the LocalSettings.php file inside the pod
+kubectl cp /root/mediawiki/Charts/mywiki/LocalSettings.php wm/mywikiapp-7c46bfff98-dxg7w:/var/www/html
+
 This time it will mount LocalSettings.php file under `/var/www/html/` using config map.
 
 <table>
