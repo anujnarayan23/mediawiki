@@ -5,9 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: ksingh3/mediawiki
+  repository: anuj23/mediawiki
   pullPolicy: IfNotPresent
-  tag: deploy
+  tag: deploy2
 
 imagePullSecrets: []
 nameOverride: ""
