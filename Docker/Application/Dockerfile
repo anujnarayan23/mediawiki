@@ -1,19 +1,16 @@
-FROM centos:7
-WORKDIR /root
-ENV WIKI_VERSION=1.35.0
-ENV WIKI_EXACT_VERSION=1.35
-RUN yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm &&\
-    yum -y install epel-release && \
-    yum-config-manager --disable remi-php54 && \
-    yum-config-manager --enable remi-php73 && \
-    yum -y install httpd && \
-    yum -y install php php-mysql php-pdo php-gd php-mbstring php-xml php-intl texlive && \
-    yum -y install wget
-
-RUN wget https://releases.wikimedia.org/mediawiki/$WIKI_EXACT_VERSION/mediawiki-$WIKI_VERSION.tar.gz && \
-    tar -xf mediawiki-$WIKI_VERSION.tar.gz && \
-    mv mediawiki-$WIKI_VERSION/* /var/www/html/ && \
-    rm mediawiki-$WIKI_VERSION.tar.gz
-
-CMD /usr/sbin/apachectl -DFOREGROUND
-EXPOSE 80
+FROM registry.access.redhat.com/ubi8/ubi:8.1
+RUN yum --disableplugin=subscription-manager -y module enable php:7.3 \
+  && yum --disableplugin=subscription-manager -y install httpd php \
+  && yum --disableplugin=subscription-manager clean all
+RUN yum -y install wget php-mysqlnd php-zip php-devel php-gd php-mbstring php-curl php-xml php-pear php-bcmath php-json php-intl
+RUN sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf \
+  && sed -i 's/Listen.acl_users = apache,nginx/listen.acl_users =/' /etc/php-fpm.d/www.conf \
+  && mkdir /run/php-fpm \
+  && chgrp -R 0 /var/log/httpd /var/run/httpd /run/php-fpm \
+  && chmod -R g=u /var/log/httpd /var/run/httpd /run/php-fpm
+RUN wget https://releases.wikimedia.org/mediawiki/1.31/mediawiki-1.31.12.tar.gz
+RUN tar -zxpvf mediawiki-1.31.12.tar.gz --strip-components=1 -C /var/www/html/
+RUN chgrp -R 0 /var/www/html/ /var/lib/php/ && chmod -R g=u /var/www/html/ /var/lib/php/
+EXPOSE 8080
+USER 1001
+CMD php-fpm & httpd -D FOREGROUND
