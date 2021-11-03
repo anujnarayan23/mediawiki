@@ -131,4 +131,23 @@ This time it will mount LocalSettings.php file under `/var/www/html/`
     <td><img src="Screenshots/6.JPG"></td>
  </tr>
  </table>
+ 
+ Final Screen when the LocalSeetings.php file is mounted
+ 
+ <table>
+  <tr>
+    <td><img src="Screenshots/7.JPG"></td>
+ </tr>
+ </table>
+ 
+ Below are the GCP workload & services
+ 
+<table>
+  <tr>
+    <td><img src="Screenshots/8.JPG"></td>
+ </tr>
+   <tr>
+    <td><img src="Screenshots/9.JPG"></td>
+ </tr>
+ </table>
 
