@@ -95,10 +95,10 @@ $ helm upgrade --install mywiki -f values.yaml . -n wm
 Open the application on [http://localhost:8080](http://localhost:8080)
 <table>
   <tr>
-    <td><img src="Screenshots/Capture1.JPG"></td>
+    <td><img src="Screenshots/1.JPG"></td>
  </tr>
  <tr>
-    <td><img src="Screenshots/Capture2.JPG"></td>
+    <td><img src="Screenshots/2.JPG"></td>
  </tr>
  </table>
 
@@ -107,10 +107,10 @@ update the hostname to mywiki-db.wm.svc.cluster.local
 
 <table>
   <tr>
-    <td><img src="Screenshots/Capture3.JPG"></td>
+    <td><img src="Screenshots/3.JPG"></td>
  </tr>
  <tr>
-    <td><img src="Screenshots/Capture4.JPG"></td>
+    <td><img src="Screenshots/4.JPG"></td>
  </tr>
  </table>
 
@@ -127,28 +127,10 @@ This time it will mount LocalSettings.php file under `/var/www/html/` using conf
 
 <table>
   <tr>
-    <td><img src="Screenshots/Capture5.JPG"></td>
+    <td><img src="Screenshots/5.JPG"></td>
+ </tr>
+   <tr>
+    <td><img src="Screenshots/6.JPG"></td>
  </tr>
  </table>
 
-
-## Rolling updates Automation
-To automate rolling update, we can make use of secrets under Settings and making use of following 
-Action: https://github.com/marketplace/actions/helm-3
-``` shell
-name: Deploy
-on:
-  release:
-    types: [created]
-jobs:
-  deployment:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: actions/checkout@v1
-      - name: Deploy
-        uses: WyriHaximus/github-action-helm3@v2
-        with:
-          exec: helm upgrade --install mywiki -f values.yaml . -n wm --set upgrade=Yes
-          kubeconfig: '${{ secrets.KUBECONFIG }}'
-```
-secrets.KUBECONFIG is kubeconfig saved inside github secrets.
