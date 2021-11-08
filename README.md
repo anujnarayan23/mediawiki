@@ -128,10 +128,10 @@ This time it will mount LocalSettings.php file under `/var/www/html/`
 
 Second
 
-##Update Values.yaml
+## Update Values.yaml
 Update config property in File: Values.yaml using the downloaded LocalSettings.php.
 
-##Re-run the helm upgrade with upgrade=Yes
+## Re-run the helm upgrade with upgrade=Yes
 
 helm upgrade --install mywiki -f values.yaml . -n wm --set upgrade=Yes
 
