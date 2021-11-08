@@ -118,10 +118,24 @@ update the hostname to 35.247.72.25
 ## Update Application helm chart.
 ### Download LocalSettings.php
 
+There are two ways you can update the LocalSetings.php file into the pod
+
+First
 ## Copy the LocalSettings.php file inside the pod
 kubectl cp /root/mediawiki/Charts/mywiki/LocalSettings.php wm/mywikiapp-7c46bfff98-dxg7w:/var/www/html
 
 This time it will mount LocalSettings.php file under `/var/www/html/`
+
+Second
+
+Update Values.yaml
+Update config property in File: Values.yaml using the downloaded LocalSettings.php.
+
+Re-run the helm upgrade with upgrade=Yes
+
+helm upgrade --install mywiki -f values.yaml . -n wm --set upgrade=Yes
+
+This time it will mount LocalSettings.php file under /var/www/html/ using config map.
 
 <table>
   <tr>
