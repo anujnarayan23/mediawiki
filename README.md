@@ -104,7 +104,7 @@ Open the application on [http://34.82.215.209:8080](http://34.82.215.209:8080)
  </table>
 
 ### Database hostname
-update the hostname to 35.247.72.25
+update the databse hostname to 35.247.72.25
 
 <table>
   <tr>
