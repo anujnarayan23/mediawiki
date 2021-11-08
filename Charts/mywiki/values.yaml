@@ -55,7 +55,8 @@ config: |-
  }
  ## Uncomment this to disable output compression
  # $wgDisableOutputCompression = true;
- $wgSitename = "TestWiki";
+$wgSitename = "mywiki";
+$wgMetaNamespace = "Mywiki";
  ## The URL base path to the directory containing the wiki;
  ## defaults for all runtime URL paths are based off of this.
  ## For more information on customizing the URLs
@@ -63,7 +64,7 @@ config: |-
  ## https://www.mediawiki.org/wiki/Manual:Short_URL
  $wgScriptPath = "";
  ## The protocol and server name to use in fully-qualified URLs
- $wgServer = "http://localhost:8080";
+ $wgServer = "http://34.82.215.209";
  ## The URL path to static resources (images, scripts, etc.)
  $wgResourceBasePath = $wgScriptPath;
  ## The URL paths to the logo.  Make sure you change this from the default,
@@ -72,14 +73,14 @@ config: |-
  ## UPO means: this is also a user preference option
  $wgEnableEmail = true;
  $wgEnableUserEmail = true; # UPO
- $wgEmergencyContact = "apache@🌻.invalid";
- $wgPasswordSender = "apache@🌻.invalid";
+ $wgEmergencyContact = "apache@34.82.215.209";
+ $wgPasswordSender = "apache@34.82.215.209";
  $wgEnotifUserTalk = false; # UPO
  $wgEnotifWatchlist = false; # UPO
  $wgEmailAuthentication = true;
  ## Database settings
  $wgDBtype = "mysql";
- $wgDBserver = "mywiki-db.wm.svc.cluster.local";
+ $wgDBserver = "35.247.72.25";
  $wgDBname = "my_wiki";
  $wgDBuser = "root";
  $wgDBpassword = "";
@@ -111,12 +112,12 @@ config: |-
  #$wgCacheDirectory = "$IP/cache";
  # Site language code, should be one of the list in ./languages/data/Names.php
  $wgLanguageCode = "en";
- $wgSecretKey = "cf17f76c5f81a35f784f45c54629e1553ee1b0e596aa091b2ce6cb2f97968e91";
+ $wgSecretKey = "f47df6f13bd6ed71894856792e3383b3c71a00447f835ac01d83faca557b756a";
  # Changing this will log out all existing sessions.
  $wgAuthenticationTokenVersion = "1";
  # Site upgrade key. Must be set to a string (default provided) to turn on the
  # web installer while LocalSettings.php is in place
- $wgUpgradeKey = "c367a9cefa65f719";
+ $wgUpgradeKey = "ab53046062a7abfb";
  ## For attaching licensing metadata to pages, and displaying an
  ## appropriate copyright notice / icon. GNU Free Documentation
  ## License and Creative Commons licenses are supported so far.
