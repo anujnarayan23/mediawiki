@@ -115,6 +115,15 @@ update the hostname to 35.247.72.25
  </tr>
  </table>
 
+<table>
+  <tr>
+    <td><img src="Screenshots/5.JPG"></td>
+ </tr>
+   <tr>
+    <td><img src="Screenshots/6.JPG"></td>
+ </tr>
+ </table>
+ 
 ## Update Application helm chart.
 ### Download LocalSettings.php
 
@@ -137,14 +146,6 @@ helm upgrade --install mywiki -f values.yaml . -n wm --set upgrade=Yes
 
 This time it will mount LocalSettings.php file under /var/www/html/ using config map.
 
-<table>
-  <tr>
-    <td><img src="Screenshots/5.JPG"></td>
- </tr>
-   <tr>
-    <td><img src="Screenshots/6.JPG"></td>
- </tr>
- </table>
  
  ## Final Screen when the LocalSeetings.php file is mounted
  
