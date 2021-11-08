@@ -146,7 +146,7 @@ This time it will mount LocalSettings.php file under /var/www/html/ using config
  </tr>
  </table>
  
- Final Screen when the LocalSeetings.php file is mounted
+ ## Final Screen when the LocalSeetings.php file is mounted
  
  <table>
   <tr>
@@ -154,7 +154,7 @@ This time it will mount LocalSettings.php file under /var/www/html/ using config
  </tr>
  </table>
  
- Below are the GCP workload & services
+## Below are the GCP workload & services
  
 <table>
   <tr>
